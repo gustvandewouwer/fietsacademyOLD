@@ -1,0 +1,162 @@
+body {
+	background-color: #FFEC9F;
+	font-family: sans-serif;
+}
+
+nav {
+	background: #F5F5F5;
+	height: 1.8em;
+	font-size: large;
+}
+
+nav  a:hover {
+	text-decoration: none;
+}
+
+nav ul,nav ul li ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav>ul>li {
+	background-color: #F5F5F5;
+	float: left;
+	position: relative;
+}
+
+nav ul li a,nav ul li:hover ul {
+	display: block;
+}
+
+nav ul li ul {
+	background-color: #F5F5F5;
+	box-shadow: 5px 5px #777777;
+	display: none;
+	position: absolute;
+	width: 20em;
+	z-index: 100;
+}
+
+nav ul li:hover {
+	background-color: #E8E8E8;
+}
+
+nav>ul>li>a,nav ul li ul li a {
+	color: black;
+	line-height: 1.8em;
+	padding: 0 0.5em;
+	text-decoration: none;
+}
+
+h1 {
+	clear: both;
+}
+
+table,th,td {
+	border: 1px solid silver;
+	border-collapse: collapse;
+}
+
+thead tr,tfoot tr {
+	color: white;
+	background-color: gray;
+}
+
+td {
+	padding-left: 0.2em;
+	padding-right: 0.2em;
+}
+
+tbody tr:nth-child(even) {
+	background-color: #FAFAFA;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: #E6E6E6;
+}
+
+tbody tr:hover {
+	background-color: #FFEC9F;
+}
+
+label {
+	cursor: pointer;
+}
+
+input,select {
+	display: block;
+	font-size: 1.1em;
+	margin-bottom: 1em;
+	margin-top: 0.2em;
+}
+
+input:focus,textarea:focus,select:focus {
+	background-color: #FFFFD6
+}
+
+input[type='checkbox'],input[type='radio'] {
+	display: inline;
+}
+
+label span {
+	background-color: red;
+	border-bottom-right-radius: 0.5em;
+	border-top-left-radius: 0.5em;
+	border-top-right-radius: 0.5em;
+	margin-left: 0.5em;
+	padding: 0.5em;
+	color: white;
+}
+
+label span:empty {
+	display: none;
+}
+
+.zonderbolletjes {
+	list-style: none;
+	margin-bottom: 0.2em;
+	padding: 0;
+}
+
+.zonderbolletjes li {
+	display: inline;
+	margin-right: 0.2em;
+}
+
+#logo {
+	width: 100%;
+}
+
+.knop {
+	text-decoration: none;
+}
+
+@media print {
+	nav {
+		display: none;
+	}
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+dt {
+	float: left;
+	width: 15em;
+}
+
+dd {
+	margin-left: 15em;
+	font-weight: bold;
+}
+
+.pagineren {
+	font-size: x-large;
+}
