@@ -3,6 +3,7 @@ package be.vdab.services;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
 
 import be.vdab.entities.Docent;
 import be.vdab.filters.JPAFilter;
@@ -15,6 +16,20 @@ public class DocentService {
 		EntityManager entityManager = JPAFilter.getEntityManager();
 		try {
 			return docentRepository.read(id, entityManager);
+		} finally {
+			entityManager.close();
+		}
+	}
+
+	public void create(Docent docent) {
+		EntityManager entityManager = JPAFilter.getEntityManager();
+		entityManager.getTransaction().begin();
+		try {
+			docentRepository.create(docent, entityManager);
+			entityManager.getTransaction().commit();
+		} catch (PersistenceException ex) {
+			entityManager.getTransaction().rollback();
+			throw ex;
 		} finally {
 			entityManager.close();
 		}
