@@ -66,4 +66,16 @@ public class DocentService extends AbstractService {
 	public List<AantalDocentenPerWedde> findAantalDocentenPerWedde() {
 		return docentRepository.findAantalDocentenPerWedde();
 	}
+
+	public void algemeneOpslag(BigDecimal percentage) {
+		BigDecimal factor = BigDecimal.ONE.add(percentage.divide(BigDecimal.valueOf(100)));
+		try {
+			beginTransaction();
+			docentRepository.algemeneOpslag(factor);
+			commit();
+		} catch (PersistenceException ex) {
+			rollback();
+			throw ex;
+		}
+	}
 }

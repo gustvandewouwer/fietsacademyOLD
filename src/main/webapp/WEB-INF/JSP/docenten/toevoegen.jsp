@@ -10,8 +10,10 @@
 	<v:menu />
 	<h1>Docent toevoegen</h1>
 	<form method='post' id='toevoegform'>
-		<label>Voornaam:<span>${fouten.voornaam}</span> <input
-			name='voornaam' value='${param.voornaam}' autofocus required></label>
+		<label>Voornaam:<span>${fouten.voornaam}</span> 
+		<input name='voornaam' value='${param.voornaam}' autofocus required>
+		</label>
+		
 		<label>Familienaam: <span>${fouten.familienaam}</span> <input
 			name='familienaam' value='${param.familienaam}' required></label> <label>Wedde:<span>${fouten.wedde}</span>
 			<input name='wedde' value='${param.wedde}' required type='number'
