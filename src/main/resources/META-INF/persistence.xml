@@ -11,6 +11,8 @@ http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2
 		<class>be.vdab.entities.Cursus</class>
 		<class>be.vdab.entities.GroepsCursus</class>
 		<class>be.vdab.entities.IndividueleCursus</class>
+		<class>be.vdab.valueobjects.Adres</class>
+		<class>be.vdab.entities.Campus</class>
 		<properties>
 			<property name='hibernate.show_sql' value='true' />
 			<property name='hibernate.format_sql' value='true' />
