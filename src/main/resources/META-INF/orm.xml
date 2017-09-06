@@ -17,4 +17,9 @@ http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
 			set d.wedde = d.wedde * :factor
 		</query>
 	</named-query>
+	<named-query name='Cursus.findByNaamContains'>
+		<query>
+			select c from Cursus c where c.naam like :zoals order by c.naam
+		</query>
+	</named-query>
 </entity-mappings>
