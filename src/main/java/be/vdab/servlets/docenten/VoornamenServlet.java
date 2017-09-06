@@ -1,4 +1,4 @@
-package be.vdab.servlets;
+package be.vdab.servlets.docenten;
 
 import java.io.IOException;
 
