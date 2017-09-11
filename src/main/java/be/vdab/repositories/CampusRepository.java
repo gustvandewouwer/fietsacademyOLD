@@ -11,7 +11,7 @@ public class CampusRepository extends AbstractRepository {
 				.setParameter("gemeente", gemeente).getResultList();
 	}
 
-	public List<Campus> findAll() { // voor later in de cursus
+	public List<Campus> findAll() { 
 		return getEntityManager().createNamedQuery("Campus.findAll", Campus.class).getResultList();
 	}
 

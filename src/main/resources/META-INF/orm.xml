@@ -27,7 +27,7 @@ http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
 			select c from Campus c where c.adres.gemeente = :gemeente order by c.naam
 		</query>
 	</named-query>
-	<named-query name='Campus.findAll'> <!-- voor later in de cursus -->
+	<named-query name='Campus.findAll'>
 		<query>
 			select c from Campus c order by c.naam
 		</query>
