@@ -45,14 +45,11 @@ public class Docent implements Serializable {
 	@CollectionTable(name = "docentenbijnamen", joinColumns = @JoinColumn(name = "docentid"))
 	@Column(name = "Bijnaam")
 	private Set<String> bijnamen;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)	
-	@JoinColumn(name = "campusid")
-	private Campus campus;
 
+	// @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	// @JoinColumn(name = "campusid")
+	// private Campus campus;
 
-	
-	
 	public String getNaam() {
 		return voornaam + ' ' + familienaam;
 	}
@@ -167,14 +164,25 @@ public class Docent implements Serializable {
 		bijnamen.remove(bijnaam);
 	}
 
-	public Campus getCampus() {
-		return campus;
+	// public Campus getCampus() {
+	// return campus;
+	// }
+	//
+	// public void setCampus(Campus campus) {
+	// this.campus = campus;
+	// }
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Docent)) {
+			return false;
+		}
+		return ((Docent) obj).rijksRegisterNr == rijksRegisterNr;
 	}
 
-	public void setCampus(Campus campus) {
-		this.campus = campus;
+	@Override
+	public int hashCode() {
+		return Long.valueOf(rijksRegisterNr).hashCode();
 	}
-	
-	
-	
+
 }

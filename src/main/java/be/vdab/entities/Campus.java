@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
@@ -35,22 +36,37 @@ public class Campus implements Serializable {
 	@OrderBy("fax")
 	private Set<TelefoonNr> telefoonNrs;
 
+	@OneToMany
+	@JoinColumn(name = "campusid")
+	@OrderBy("voornaam, familienaam")
+	private Set<Docent> docenten;
+
+	public Set<Docent> getDocenten() {
+		return Collections.unmodifiableSet(docenten);
+	}
+
+	public void add(Docent docent) {
+		docenten.add(docent);
+	}
+
+	public void remove(Docent docent) {
+		docenten.remove(docent);
+	}
+
 	public Campus(String naam, Adres adres) {
 		setNaam(naam);
 		setAdres(adres);
 		telefoonNrs = new LinkedHashSet<>();
+		docenten = new LinkedHashSet<>();
 	}
-
 
 	public long getId() {
 		return id;
 	}
 
-
 	public void setId(long id) {
 		this.id = id;
 	}
-
 
 	public String getNaam() {
 		return naam;
