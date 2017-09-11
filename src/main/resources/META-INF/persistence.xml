@@ -14,6 +14,7 @@ http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2
 		<class>be.vdab.valueobjects.Adres</class>
 		<class>be.vdab.entities.Campus</class>
 		<class>be.vdab.valueobjects.TelefoonNr</class>
+		<class>be.vdab.entities.Verantwoordelijkheid</class>
 		<properties>
 			<property name='hibernate.show_sql' value='true' />
 			<property name='hibernate.format_sql' value='true' />
