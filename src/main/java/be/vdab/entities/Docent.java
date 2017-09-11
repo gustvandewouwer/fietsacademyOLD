@@ -46,9 +46,9 @@ public class Docent implements Serializable {
 	@Column(name = "Bijnaam")
 	private Set<String> bijnamen;
 
-	// @ManyToOne(fetch = FetchType.LAZY, optional = false)
-	// @JoinColumn(name = "campusid")
-	// private Campus campus;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "campusid")
+	private Campus campus;
 
 	public String getNaam() {
 		return voornaam + ' ' + familienaam;
@@ -164,13 +164,21 @@ public class Docent implements Serializable {
 		bijnamen.remove(bijnaam);
 	}
 
-	// public Campus getCampus() {
-	// return campus;
-	// }
-	//
-	// public void setCampus(Campus campus) {
-	// this.campus = campus;
-	// }
+	public Campus getCampus() {
+		return campus;
+	}
+
+	public void setCampus(Campus campus) {
+		if (this.campus != null && this.campus.getDocenten().contains(this)) {
+			// als de andere kant nog niet bijgewerkt is
+			this.campus.remove(this); // werk je de andere kant bij
+		}
+		this.campus = campus;
+		if (campus != null && !campus.getDocenten().contains(this)) {
+			// als de andere kant nog niet bijgewerkt is
+			campus.add(this); // werk je de andere kant bij
+		}
+	}
 
 	@Override
 	public boolean equals(Object obj) {

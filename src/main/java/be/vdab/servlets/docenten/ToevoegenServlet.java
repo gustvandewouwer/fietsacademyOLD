@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import be.vdab.entities.Docent;
 import be.vdab.enums.Geslacht;
+import be.vdab.exceptions.DocentBestaatAlException;
 import be.vdab.services.CampusService;
 import be.vdab.services.DocentService;
 import be.vdab.util.StringUtils;
@@ -74,16 +75,35 @@ public class ToevoegenServlet extends HttpServlet {
 			fouten.put("campussen", "verplicht");
 		}
 
+//		if (fouten.isEmpty()) {
+//			Docent docent = new Docent(voornaam, familienaam, wedde, Geslacht.valueOf(geslacht), rijksRegisterNr);
+//			// campusService.read(Long.parseLong(campusId)).ifPresent(campus ->
+//			// docent.setCampus(campus));
+//			docentService.create(docent);
+//			response.sendRedirect(
+//					response.encodeRedirectURL(String.format(REDIRECT_URL, request.getContextPath(), docent.getId())));
+//		} else {
+//			request.setAttribute("fouten", fouten);
+//			request.setAttribute("campussen", campusService.findAll());
+//			request.getRequestDispatcher(VIEW).forward(request, response);
+//		}
+
 		if (fouten.isEmpty()) {
 			Docent docent = new Docent(voornaam, familienaam, wedde, Geslacht.valueOf(geslacht), rijksRegisterNr);
-//			campusService.read(Long.parseLong(campusId)).ifPresent(campus -> docent.setCampus(campus));
-			docentService.create(docent);
-			response.sendRedirect(
-					response.encodeRedirectURL(String.format(REDIRECT_URL, request.getContextPath(), docent.getId())));
-		} else {
+			campusService.read(Long.parseLong(campusId)).ifPresent(campus -> docent.setCampus(campus));
+			try {
+				docentService.create(docent);
+				response.sendRedirect(response
+						.encodeRedirectURL(String.format(REDIRECT_URL, request.getContextPath(), docent.getId())));
+			} catch (DocentBestaatAlException ex) {
+				fouten.put("rijksregisternr", "bestaat al");
+			}
+		}
+		if (!fouten.isEmpty()) {
 			request.setAttribute("fouten", fouten);
-			request.setAttribute("campussen", campusService.findAll());			
+			request.setAttribute("campussen", campusService.findAll());
 			request.getRequestDispatcher(VIEW).forward(request, response);
 		}
+
 	}
 }

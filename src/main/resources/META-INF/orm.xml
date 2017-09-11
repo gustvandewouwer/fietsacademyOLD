@@ -32,4 +32,9 @@ http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
 			select c from Campus c order by c.naam
 		</query>
 	</named-query>
+	<named-query name='Docent.findByRijksRegisterNr'>
+		<query>
+			select d from Docent d where d.rijksRegisterNr = :rijksRegisterNr
+		</query>
+	</named-query>	
 </entity-mappings>
